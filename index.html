@@ -63,7 +63,10 @@
             <li>
                 <a href="#contact">Contact</a>
             </li>
-            
+            <li>
+                <a href="#contact_form">Contact form</a>
+            </li>
+
         </ul>
     </nav>
 
@@ -366,9 +369,45 @@
                     </ul>
                     <hr class="small">
                 </div>
-            </div>
+                </div>
+                </div>
+                </footer>
+<section id='contact_form'>
+            <div class="row">
+                <div class="col-md-12 text-center form-section">
+                        <div class="container">
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">                        
+                                <h2>Contact form</h2>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3">
+                                  <form id="contact-form" class="form" action="http://formspree.io/bhaveshlakhani5@gmail.com" method="POST" role="form">
+                                      <div class="form-group">
+                                          <label class="form-label" for="name">Your Name</label>
+                                          <input type="text" class="form-control" id="name" name="name" placeholder="Your name" tabindex="1" required>
+                                      </div>                            
+                                      <div class="form-group">
+                                          <label class="form-label" for="email">Your Email</label>
+                                          <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" tabindex="2" required>
+                                      </div>                                 
+                                      <div class="form-group">
+                                          <label class="form-label" for="message">Message</label>
+                                          <textarea rows="5" cols="50" name="message" class="form-control" id="message" placeholder="Message..." tabindex="4" required></textarea>                                 
+                                      </div>
+                                      <div class="text-center">
+                                          <button type="submit" class="btn btn-start-order">Send Message</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                        </div>
+
+</section>
+
+                   </div>
         </div>
-    </footer>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -423,6 +462,52 @@
             }
         });
     });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+    // Test for placeholder support
+    $.support.placeholder = (function(){
+        var i = document.createElement('input');
+        return 'placeholder' in i;
+    })();
+
+    // Hide labels by default if placeholders are supported
+    if($.support.placeholder) {
+        $('.form-label').each(function(){
+            $(this).addClass('js-hide-label');
+        });  
+
+        // Code for adding/removing classes here
+        $('.form-group').find('input, textarea').on('keyup blur focus', function(e){
+            
+            // Cache our selectors
+            var $this = $(this),
+                $parent = $this.parent().find("label");
+
+            if (e.type == 'keyup') {
+                if( $this.val() == '' ) {
+                    $parent.addClass('js-hide-label'); 
+                } else {
+                    $parent.removeClass('js-hide-label');   
+                }                     
+            } 
+            else if (e.type == 'blur') {
+                if( $this.val() == '' ) {
+                    $parent.addClass('js-hide-label');
+                } 
+                else {
+                    $parent.removeClass('js-hide-label').addClass('js-unhighlight-label');
+                }
+            } 
+            else if (e.type == 'focus') {
+                if( $this.val() !== '' ) {
+                    $parent.removeClass('js-unhighlight-label');
+                }
+            }
+        });
+    } 
+});
     </script>
 
 </body>
